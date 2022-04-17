@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Button, FlatList, TouchableOpacity, Modal, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
-const Countries = () => {
+const Countries = ({ navigation }) => {
     return (
-        <View>
+        <>
 
-        </View>
+
+            <Footer />
+        </>
     );
 };
 
