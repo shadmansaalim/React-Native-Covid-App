@@ -13,7 +13,7 @@ const About = () => {
     return (
         <View style={styles.container}>
             <Text style={{ ...globalStyles.text, ...styles.text }}>
-                My name is Saalim Shadman and I am a Computer Science student at RMIT, Melbourne, Australia. I used React Native and Native Base to build this application along with API for live Covid data.
+                My name is Saalim Shadman and I am a Computer Science student at RMIT, Melbourne, Australia. I used React Native and Native Base to build this application along with API for live Covid data. I am a Full Stack Developer checkout my portfolio to know more about me.
             </Text>
             <Button onPress={() => Linking.openURL('https://saalim-shadman.web.app/')} rightIcon={<Feather name="arrow-up-right" size={24} color="black" />} bgColor="cyan.700" marginTop={6}>About Me
             </Button>
