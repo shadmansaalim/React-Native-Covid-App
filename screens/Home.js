@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Button, FlatList, TouchableOpacity, Modal, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View, Button, FlatList, TouchableOpacity, Modal, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { globalStyles } from '../styles/global';
+import { NativeBaseProvider, Text, Box } from 'native-base';
+
 
 const Home = () => {
     const [global, setGlobal] = useState({});
@@ -14,6 +16,35 @@ const Home = () => {
     return (
         <View style={globalStyles.container}>
             <Text style={{ ...globalStyles.titleText, ...styles.headerText }}>Global Coronavirus Information</Text>
+            <View style={styles.dataContainer}>
+                <TouchableOpacity>
+                    <View style={styles.cardStyle}>
+                        <View style={styles.cardInfo}>
+                            <Text style={styles.text} fontSize="2xl" color="white">Cases</Text>
+                            <Text style={styles.text} color="white">Global</Text>
+                        </View>
+                        <Text style={styles.text} fontSize="2xl" color="muted.300">{global.cases}</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <View style={styles.cardStyle}>
+                        <View style={styles.cardInfo}>
+                            <Text style={styles.text} fontSize="2xl" color="white">Deaths</Text>
+                            <Text style={styles.text} color="white">Global</Text>
+                        </View>
+                        <Text style={styles.text} fontSize="2xl" color="muted.300">{global.deaths}</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <View style={styles.cardStyle}>
+                        <View style={styles.cardInfo}>
+                            <Text style={styles.text} fontSize="2xl" color="white">Recovered</Text>
+                            <Text style={styles.text} color="white">Global</Text>
+                        </View>
+                        <Text style={styles.text} fontSize="2xl" color="muted.300">{global.recovered}</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
@@ -23,5 +54,25 @@ export default Home;
 const styles = StyleSheet.create({
     headerText: {
         textAlign: 'center'
+    },
+    dataContainer: {
+        marginTop: 25
+    },
+    cardStyle: {
+        backgroundColor: "#1e272e",
+        borderRadius: 10,
+        margin: 15,
+        padding: 15,
+        textAlign: "left",
+        overflow: "hidden",
+    },
+    cardInfo: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+    text: {
+        fontFamily: 'poppins-extra-light',
+        marginBottom: 0
     }
 });
