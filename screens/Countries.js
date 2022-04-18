@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
-import { View, VStack, Input, Icon, Text, FlatList } from 'native-base';
+import { View, VStack, Input, Icon, Text, FlatList, ScrollView } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
 import { globalStyles } from '../styles/global';
 import CountryData from '../components/CountryData';
@@ -8,6 +8,7 @@ import CountryData from '../components/CountryData';
 const Countries = () => {
     const [countries, setCountries] = useState([]);
     const [displayCountries, setDisplayCountries] = useState([]);
+    const [click, setClick] = useState(false);
     useEffect(() => {
         fetch('https://coronavirus-19-api.herokuapp.com/countries/')
             .then(res => res.json())
@@ -18,35 +19,51 @@ const Countries = () => {
     }, []);
 
     const handleSearch = searchText => {
+        setClick(true);
         const userCountries = countries.filter(country => country.country.toLowerCase().includes(searchText.toLowerCase()));
         setDisplayCountries(userCountries);
     }
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <VStack w="100%" alignSelf="center" padding={6}>
-                <Input onChangeText={text => handleSearch(text)} color="white" placeholder="Search your country" width="100%" borderRadius="4" py="3" px="1" fontSize="14" InputLeftElement={<Icon m="2" ml="3" size="6" color="gray.400" as={<MaterialIcons name="search" />} />} />
+                <Input type="text" onChangeText={text => handleSearch(text)} color="white" placeholder="Search your country" width="100%" borderRadius="4" py="3" px="1" fontSize="14" InputLeftElement={<Icon m="2" ml="3" size="6" color="gray.400" as={<MaterialIcons name="search" />} />} />
             </VStack>
 
             {
-                displayCountries.length
+                click
                     ?
-                    <View>
-                        <Text textAlign="center" marginTop={6} marginBottom={6} style={globalStyles.titleText}>Live Covid-19 Information</Text>
-                        <FlatList
-                            data={displayCountries}
-                            renderItem={(country) => (
-                                <CountryData country={country}></CountryData>
-                            )}
-                        />
-                    </View>
+                    (
+                        displayCountries.length
+                            ?
+                            <View>
+                                <Text textAlign="center" marginTop={4} marginBottom={6} style={globalStyles.titleText}>Live Covid-19 Information</Text>
+                                {
+                                    displayCountries.map(country => <CountryData
+                                        key={country.country}
+                                        country={country}
+                                    ></CountryData>)
+                                }
+                            </View>
+                            :
+                            <View>
+                                <Text style={globalStyles.titleText} color="white">Search Result Not Found</Text>
+                            </View>
+
+                    )
                     :
                     <View>
-                        <Text>Search Result Not Found</Text>
+                        <Text textAlign="center" marginTop={4} marginBottom={6} style={globalStyles.titleText}>Live Covid-19 Information</Text>
+                        {
+                            countries.map(country =>
+                                <CountryData
+                                    key={country.country}
+                                    country={country}
+                                ></CountryData>)
+                        }
                     </View>
-
             }
 
-        </View>
+        </ScrollView>
 
     );
 };

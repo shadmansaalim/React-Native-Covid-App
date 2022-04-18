@@ -2,12 +2,13 @@ import React from 'react';
 import { View, Text } from 'native-base';
 import { StyleSheet } from 'react-native';
 import { globalStyles } from '../styles/global';
+import { TouchableOpacity } from 'react-native';
 
 const CountryData = (props) => {
-    const { country, active, cases, deaths, recovered, todayCases, todayDeaths, critical } = props.country.item;
+    const { country, active, cases, deaths, recovered, todayCases, todayDeaths, critical } = props.country;
 
     return (
-        <View style={styles.cardStyle}>
+        <TouchableOpacity style={styles.cardStyle}>
             <View>
                 <Text style={{ ...globalStyles.titleText, fontSize: 20 }} color="white">{country}</Text>
                 <View>
@@ -20,7 +21,7 @@ const CountryData = (props) => {
                     <Text style={globalStyles.text} color="white">Recovered : {recovered} | Critical : {critical}</Text>
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     );
 };
 
