@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Button, FlatList, TouchableOpacity, Modal, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/global';
-import { NativeBaseProvider, Text, Box } from 'native-base';
+import { Text, HStack, Spinner } from 'native-base';
 
 
 const Home = () => {
@@ -14,38 +14,49 @@ const Home = () => {
     }, [])
 
     return (
-        <View style={globalStyles.container}>
-            <Text style={{ ...globalStyles.titleText, ...styles.headerText }}>Global Coronavirus Information</Text>
-            <View style={styles.dataContainer}>
-                <TouchableOpacity>
-                    <View style={styles.cardStyle}>
-                        <View style={styles.cardInfo}>
-                            <Text style={styles.text} fontSize="2xl" color="white">Cases</Text>
-                            <Text style={styles.text} color="white">Global</Text>
+        <>
+            {
+                Object.keys(global).length
+                    ?
+                    <View style={globalStyles.container}>
+                        <Text style={{ ...globalStyles.titleText, ...styles.headerText }}>Global Coronavirus Information</Text>
+                        <View style={styles.dataContainer}>
+                            <TouchableOpacity>
+                                <View style={styles.cardStyle}>
+                                    <View style={styles.cardInfo}>
+                                        <Text style={styles.text} fontSize="2xl" color="white">Cases</Text>
+                                        <Text style={styles.text} color="white">Global</Text>
+                                    </View>
+                                    <Text style={styles.text} fontSize="2xl" color="muted.300">{global.cases}</Text>
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                                <View style={styles.cardStyle}>
+                                    <View style={styles.cardInfo}>
+                                        <Text style={styles.text} fontSize="2xl" color="white">Deaths</Text>
+                                        <Text style={styles.text} color="white">Global</Text>
+                                    </View>
+                                    <Text style={styles.text} fontSize="2xl" color="muted.300">{global.deaths}</Text>
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                                <View style={styles.cardStyle}>
+                                    <View style={styles.cardInfo}>
+                                        <Text style={styles.text} fontSize="2xl" color="white">Recovered</Text>
+                                        <Text style={styles.text} color="white">Global</Text>
+                                    </View>
+                                    <Text style={styles.text} fontSize="2xl" color="muted.300">{global.recovered}</Text>
+                                </View>
+                            </TouchableOpacity>
                         </View>
-                        <Text style={styles.text} fontSize="2xl" color="muted.300">{global.cases}</Text>
                     </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <View style={styles.cardStyle}>
-                        <View style={styles.cardInfo}>
-                            <Text style={styles.text} fontSize="2xl" color="white">Deaths</Text>
-                            <Text style={styles.text} color="white">Global</Text>
-                        </View>
-                        <Text style={styles.text} fontSize="2xl" color="muted.300">{global.deaths}</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <View style={styles.cardStyle}>
-                        <View style={styles.cardInfo}>
-                            <Text style={styles.text} fontSize="2xl" color="white">Recovered</Text>
-                            <Text style={styles.text} color="white">Global</Text>
-                        </View>
-                        <Text style={styles.text} fontSize="2xl" color="muted.300">{global.recovered}</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
-        </View>
+                    :
+                    <HStack justifyContent="center" alignItems="center" height="100%">
+                        <Spinner size="lg" color="dark.600" />
+                    </HStack>
+
+            }
+        </>
     );
 };
 
