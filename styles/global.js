@@ -14,6 +14,9 @@ export const globalStyles = StyleSheet.create({
         marginVertical: 8,
         lineHeight: 20
     },
-
+    text: {
+        fontFamily: 'poppins-extra-light',
+        marginBottom: 0
+    }
 
 });

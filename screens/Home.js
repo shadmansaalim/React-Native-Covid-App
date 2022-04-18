@@ -24,28 +24,28 @@ const Home = () => {
                             <TouchableOpacity>
                                 <View style={styles.cardStyle}>
                                     <View style={styles.cardInfo}>
-                                        <Text style={styles.text} fontSize="2xl" color="white">Cases</Text>
-                                        <Text style={styles.text} color="white">Global</Text>
+                                        <Text style={globalStyles.text} fontSize="2xl" color="white">Cases</Text>
+                                        <Text style={globalStyles.text} color="white">Global</Text>
                                     </View>
-                                    <Text style={styles.text} fontSize="2xl" color="muted.300">{global.cases}</Text>
+                                    <Text style={globalStyles.text} fontSize="2xl" color="muted.300">{global.cases}</Text>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity>
                                 <View style={styles.cardStyle}>
                                     <View style={styles.cardInfo}>
-                                        <Text style={styles.text} fontSize="2xl" color="white">Deaths</Text>
-                                        <Text style={styles.text} color="white">Global</Text>
+                                        <Text style={globalStyles.text} fontSize="2xl" color="white">Deaths</Text>
+                                        <Text style={globalStyles.text} color="white">Global</Text>
                                     </View>
-                                    <Text style={styles.text} fontSize="2xl" color="muted.300">{global.deaths}</Text>
+                                    <Text style={globalStyles.text} fontSize="2xl" color="muted.300">{global.deaths}</Text>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity>
                                 <View style={styles.cardStyle}>
                                     <View style={styles.cardInfo}>
-                                        <Text style={styles.text} fontSize="2xl" color="white">Recovered</Text>
-                                        <Text style={styles.text} color="white">Global</Text>
+                                        <Text style={globalStyles.text} fontSize="2xl" color="white">Recovered</Text>
+                                        <Text style={globalStyles.text} color="white">Global</Text>
                                     </View>
-                                    <Text style={styles.text} fontSize="2xl" color="muted.300">{global.recovered}</Text>
+                                    <Text style={globalStyles.text} fontSize="2xl" color="muted.300">{global.recovered}</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -82,8 +82,4 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center'
     },
-    text: {
-        fontFamily: 'poppins-extra-light',
-        marginBottom: 0
-    }
 });
